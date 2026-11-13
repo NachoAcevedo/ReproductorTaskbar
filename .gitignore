@@ -2,8 +2,3 @@
 bin/
 obj/
 publish/
-
-# Versión anterior en PowerShell (vive en la rama old)
-*.ps1
-*.vbs
-*.zip
