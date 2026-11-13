@@ -1,50 +1,36 @@
 # Reproductor Taskbar
 
-Prototipo para simular un reproductor de musica en la zona de la taskbar de Windows, sin instalar Windhawk ni modificar Explorer.
+Widget de música para la taskbar de Windows: muestra la canción, el artista y la carátula, con controles de reproducción.
 
-## Que hace
+## Qué hace
 
-- Abre una ventana chica, sin borde, siempre visible y con fondo #1C1C1C.
-- Se posiciona abajo a la izquierda, sobre la zona visual de la taskbar cuando esta abajo.
-- Se mantiene pinneado visualmente en esa posicion y vuelve ahi en cada refresco.
-- Muestra un icono musical en la bandeja del sistema mientras esta activo.
-- Usa iconos de Windows en vez de botones con texto.
-- Muestra titulo, artista, album y caratula si el reproductor activo publica metadata al sistema.
-- Actualiza metadata y estado play/pausa por eventos del sistema multimedia cuando estan disponibles.
-- Envia comandos multimedia globales a Windows:
-  - anterior
-  - reproducir / pausar
-  - siguiente
+- Se incrusta dentro de la taskbar, abajo a la izquierda, y se ajusta a su alto y a la escala de pantalla.
+- Muestra título, artista, álbum y carátula del reproductor activo (Spotify, navegador, Windows Media Player y cualquier app que publique su música a Windows).
+- Botones de anterior, reproducir / pausar y siguiente, enviados directamente al reproductor activo.
+- Se actualiza solo por eventos de Windows, sin consultas periódicas; la carátula se decodifica una vez por canción.
+- Si se reinicia Explorer, vuelve a aparecer solo.
+- Ícono en la bandeja del sistema con:
+  - **Carátula**: mostrarla u ocultarla (se recuerda entre reinicios).
+  - **Iniciar con Windows**.
+  - **Salir**.
 
-## Como ejecutarlo
+## Requisitos
 
-Doble click en:
+- Windows 10 (2004) o Windows 11.
+- [.NET 8 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0).
 
-```text
-Reproductor Taskbar.vbs
-```
-
-Ese lanzador abre el widget sin dejar una terminal visible.
-
-Para iniciarlo automaticamente con Windows, doble click en:
-
-```text
-install-startup.vbs
-```
-
-Para quitar el inicio automatico:
-
-```text
-remove-startup.vbs
-```
-
-O desde PowerShell:
+## Compilar
 
 ```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\TaskbarMusicWidget.ps1
+dotnet publish ReproductorTaskbar\ReproductorTaskbar.csproj -c Release -o publish
 ```
 
-## Limitacion importante
+Genera `publish\ReproductorTaskbar.exe`. Doble click para ejecutarlo.
 
-Este prototipo no se inserta realmente dentro de la taskbar. Se superpone visualmente sobre esa zona. Para integrarse de verdad dentro de Explorer/taskbar harian falta hooks, inyeccion o APIs no publicas del shell, que es el terreno donde trabaja Windhawk.
+## Versión anterior
+
+La versión original en PowerShell está en la rama [`old`](../../tree/old).
+
+## Licencia
+
+GPL-3.0. Ver [LICENSE](LICENSE).

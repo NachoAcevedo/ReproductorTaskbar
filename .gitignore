@@ -1,5 +1,9 @@
-# Versiones viejas y de prueba
-TaskbarMusicWidget.old.ps1
-TaskbarMusicWidget.event-test.ps1
-Reproductor Taskbar Event Test.vbs
+# Compilación
+bin/
+obj/
+publish/
+
+# Versión anterior en PowerShell (vive en la rama old)
+*.ps1
+*.vbs
 *.zip
